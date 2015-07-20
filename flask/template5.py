@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,request
 import markov_v2 as markov
 import fileio_v1 as reader
 import sengen12 as sentt
@@ -8,10 +8,33 @@ from random import choice
 from random import random
 from random import randint
 
+USER = "p"
+PASSWORD = "p"
+
 template = Flask(__name__)
-@template.route('/')
+def authenticate( name, passwd ):
+    return name==USER and passwd==PASSWORD
+@template.route( '/' )
 def root():
-    return render_template("base2.html", title = "Hi")
+    return render_template( 'index.html' )
+@template.route( '/login', methods = ['POST', 'GET'] )
+def login_form():
+    if request.method == 'GET':
+        return render_template( 'index.html' )
+    else:
+        form_input = request.form
+        u = form_input['txt_uname']
+        p = form_input['pwd_upass']
+    if u=='' or p=='':
+        s='Please enter a username and password'
+        return render_template( 'index.html', message = s)
+    elif authenticate( u, p ):
+        s='HuzzaaH! Access granted.'
+        return render_template( 'base2.html', message = s )
+    else:
+        s='Access denied.'
+        return render_template( 'index.html', message = s )
+
 @template.route("/markov/")
 @template.route("/markov/<source>")
 def x(source = "sawyer"):
@@ -25,11 +48,7 @@ def x(source = "sawyer"):
 
 @template.route("/sen/")
 def sent():
-    return "sengen"
-    
-    
-    sen = np + vp
-    return render_template("sen.html", sent = sen, title = "Sengen")
+    return render_template("sen.html", sen = "sengen")
 
 @template.route("/rot/")
 def rott():
