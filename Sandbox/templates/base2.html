@@ -1,0 +1,55 @@
+<html>
+<head>
+<link rel = "stylesheet" type="text/css" href = "/static/style.css">
+<title> {{title}} </title>
+</head>
+<body>
+    <div id="head">
+        <h1>Pushy Programmers</h1>
+    </div>
+    <div>
+        <div>
+            <a href="/">Home</a>
+        </div>
+        <div>
+            <a href="/markov/">Markov</a>
+        </div>
+        <div>
+            <a href="/sen/">Sengen</a>
+        </div>
+        <div>
+            <a href="/rot/">Rot13</a>
+        </div>
+    </div>
+    <div id="fab">
+        <img src="http://orig00.deviantart.net/822d/f/2012/366/e/d/fab_potato_thinks_he__s_so_fabulous_xd_by_heali_aquastar-d5q03gu.png"/>
+    </div>
+
+ <select>
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="mercedes">Mercedes</option>
+  <option value="audi">Audi</option>
+</select> 
+
+ <form action='/story' method="POST">
+First name:<br>
+<input type="text" name="firstname" >
+<br>
+Last name:<br>
+<input type="text" name="lastname"> <br>
+Password: <br>
+<input type="password" name='password'>
+<input type="submit" value="Submit">
+</form> 
+{% block content %}
+
+{% endblock %}
+{% block rot %}
+
+{% endblock %}
+{% block sen %}
+
+{% endblock %}
+</body>
+</html>
